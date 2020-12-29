@@ -1,0 +1,47 @@
+.card {
+    background-color: #0f1d3a;
+    max-width: 330px;
+    padding: 1rem;
+    border-radius: 20px;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.7rem;
+    .card-title {
+        color: #fff;
+    }
+}
+
+.card-body {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-family: 'Nunito';
+    color: #546790;
+    font-size: 0.9rem;
+    margin-bottom: 0.9rem;
+    div {
+        margin-right: 25px;
+        i {
+            margin-right: 7px;
+        }
+    }
+}
+
+.card-footer {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-family: 'Nunito';
+    color: #546790;
+    font-size: 0.9rem;
+    div {
+        margin-right: 25px;
+        i {
+            margin-right: 7px;
+        }
+    }
+}
