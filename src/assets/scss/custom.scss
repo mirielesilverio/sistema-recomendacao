@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+* {
+    font-family: 'Nunito', sans-serif;
+}
+body {
+    background-color: #192744;
+}
+
+input, textarea {
+    height: 55px;
+    background-color: #253657;
+    color: #0F1D3A;
+    border-radius: 50px;
+    border: none;
+    font-weight: 700;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.btn {
+    border: none;
+    text-align: center;
+    height: 55px;
+    color: white;
+    background-color: #44ADFF;
+    cursor: pointer;
+}
+
+h1 {
+    font-size: 24px;
+    color: white;
+}
+
+p {
+    font-size: 14px;
+    color: #7389B7;
+}
