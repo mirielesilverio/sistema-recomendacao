@@ -5,14 +5,14 @@
       <section class="container" id="userData" v-if="Object.keys(my_user).length">
         <h1>{{ my_user.login }}</h1>
         <h2>{{ my_user.url }}</h2>
-        <img :src="my_user.avatar_url" alt="" />
+        <img :src="my_user.avatar_url" :alt="my_user.login" />
       </section>
       <loader v-if="!Object.keys(my_user).length"></loader>
 
       <!--MyRepositories-->
       <div class="section-headers">
         <h2>Meus Repositórios</h2>
-        <a href="#">Visualizar Todos</a>
+        <a :href="`https://github.com/${my_user.login}?tab=repositories`" target="_blank">Visualizar Todos</a>
       </div>
 
       <section id="my-repositories" v-if="my_repositorys.length">

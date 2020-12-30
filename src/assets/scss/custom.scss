@@ -18,8 +18,15 @@ textarea {
     border-radius: 50px;
     border: none;
     font-weight: 700;
-    padding-left: 8px;
+    font-size: 0.8rem;
+    padding-left: 30px;
     padding-right: 8px;
+}
+
+input:focus {
+    outline: none !important;
+    font-weight: 500;
+    color: white;
 }
 
 .btn {
@@ -46,22 +53,6 @@ a {
     color: #3e9ce8;
 }
 
-.danger {
-    color: red;
-}
-
-.success {
-    color: green;
-}
-
-.info {
-    color: lightblue;
-}
-
-.secondary {
-    color: darkblue;
-}
-
 .loader-container {
     display: flex;
     justify-content: center;
@@ -69,16 +60,19 @@ a {
     align-content: center;
     padding: 24px;
     .loader {
-        border: 16px solid #0F1D3A; 
+        border: 16px solid #0F1D3A;
         border-top: 16px solid #44ADFF;
         border-radius: 50%;
         width: 120px;
         height: 120px;
         animation: spin 2s linear infinite;
     }
-      
     @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
     }
 }
