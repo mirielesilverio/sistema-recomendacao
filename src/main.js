@@ -20,18 +20,6 @@ const router = new VueRouter({
 })
 
 
-Vue.axios.interceptors.request.use(
-  (config) => {
-    let token = 'token cad3136376100f25f72a916200007c4b1cc4e170';
-    config.headers['Authorization'] = token;
-    return config;
-  }, 
-
-  (error) => {
-    return Promise.reject(error);
-  }
-);
-
 
 new Vue({
   render: h => h(App),
