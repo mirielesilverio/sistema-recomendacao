@@ -57,7 +57,8 @@ export default {
                     });
                     var languages_list = [];
                     for (var language in languages) {
-                        languages_list.push([language, languages[language]]);
+                        if (language !== 'Shell')
+                            languages_list.push([language, languages[language]]);
                     }
                     languages_list.sort(function(a, b) {
                         return b[1] - a[1];
