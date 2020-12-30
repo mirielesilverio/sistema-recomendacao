@@ -1,14 +1,13 @@
 export default {
     components: {},
     name: 'Discover',
-    props: {
-    },
+    props: {},
     created() {
-        
+
     },
     data() {
         return {
-            
+
         };
     },
 }

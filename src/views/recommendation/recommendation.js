@@ -1,8 +1,11 @@
+import RepositoryCard from './../../components/repository-card/RepositoryCard.vue';
+
 export default {
-    components: {},
-    name: 'Recommendation',
-    props: {
+    components: {
+        'repository-card': RepositoryCard
     },
+    name: 'Recommendation',
+    props: {},
     created() {
         this.get_language_recommendation('mirielesilverio');
     },
@@ -68,7 +71,7 @@ export default {
                                 resolve(r);
                             });
                         }
-                    });                    
+                    });
                });
             });
         },
@@ -92,7 +95,7 @@ export default {
             });
         },
         get_repositories(page_number, page_size, q_filter) {
-            if (!page_size) 
+            if (!page_size)
                 page_size = 100;
             if (!q_filter)
                 q_filter = 'all';

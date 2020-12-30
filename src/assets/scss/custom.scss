@@ -1,13 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
-
 * {
     font-family: 'Nunito', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
 body {
     background-color: #192744;
 }
 
-input, textarea {
+input,
+textarea {
     height: 55px;
     background-color: #253657;
     color: #0F1D3A;
@@ -35,4 +39,25 @@ h1 {
 p {
     font-size: 14px;
     color: #7389B7;
+}
+
+a {
+    text-decoration: none;
+    color: #3e9ce8;
+}
+
+.danger {
+    color: red;
+}
+
+.success {
+    color: green;
+}
+
+.info {
+    color: lightblue;
+}
+
+.secondary {
+    color: darkblue;
 }
