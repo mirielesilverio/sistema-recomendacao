@@ -1,34 +1,47 @@
 import RepositoryCard from './../../components/repository-card/RepositoryCard.vue';
+import Loader from './../../components/Loader.vue';
 
 export default {
     components: {
-        'repository-card': RepositoryCard
+        'repository-card': RepositoryCard,
+        'loader': Loader,
     },
     name: 'Recommendation',
     props: {},
     created() {
-        this.get_language_recommendation('mirielesilverio');
+        this.set_myRepositories();
+        this.set_my_user();
+        this.set_most_favorite_repositories();
+        this.get_language_recommendation();
     },
     data() {
         return {
-            repositorys: [],
-            actualUser: {},
+            my_repositorys: [],
+            my_user: {},
             most_favorite_repositories: [],
             repositories_similar_to_mine: [],
         };
     },
     methods: {
-        set_most_favorite_repositories() {
+        set_myRepositories() {
             var vm = this;
-            this.get_repositories(1, 5).then(function(response) {
-                response.data.items.forEach(repo => {
-                    vm.most_favorite_repositories.push(vm.clean_repository_object(repo));
+            this.get_user_repositories('mirielesilverio', 5).then(function (response) {
+                vm.get_repositories_with_language(response.data).then(function(r) {
+                    vm.my_repositorys = r;
                 });
             });
         },
-        get_language_recommendation(username) {
+        set_most_favorite_repositories() {
             var vm = this;
-            this.get_user_repositories(username).then(function(response) {
+            this.get_repositories(1, 5).then(function(response) {
+                vm.get_repositories_with_language(response.data.items).then(function(r) {
+                    vm.most_favorite_repositories = r;
+                });
+            });
+        },
+        get_language_recommendation() {
+            var vm = this;
+            this.get_user_repositories('mirielesilverio').then(function(response) {
                 var repositories = [];
                 vm.get_repositories_with_language(response.data).then(function(r) {
                     repositories = r;
@@ -108,12 +121,14 @@ export default {
                 }
             });
         },
-        get_user_repositories (username) {
+        get_user_repositories (username, page_size) {
+            if (!page_size)
+                page_size = 100
             return this.axios.get('https://api.github.com/users/'+ username +'/repos', {
                 params: {
                     type: 'owner',
                     sort: 'updated',
-                    per_page: 100,
+                    per_page: page_size,
                 }
             });
         },
@@ -125,15 +140,16 @@ export default {
             return {
                 name: repository.name,
                 owner: repository.owner,
-                stars_count: repository.stargazers_count,
-                forks_count: repository.forks_count,
+                stars_count: repository.stargazers_count || 0,
+                forks_count: repository.forks_count || 0,
                 url: repository.svn_url
             };
         },
-        recommend_to_user () {
+        set_my_user () {
+            var vm = this;
             this.axios.get('https://api.github.com/users/mirielesilverio')
             .then( function(response) {
-                console.log(response.data);
+                vm.my_user = response.data;
             });
         }
     }

@@ -2,11 +2,12 @@
   <main>
     <div id="main-content">
       <!--UserData-->
-      <section class="container" id="userData">
-        <h1>Miriéle Silvério</h1>
-        <h2>https://github.com/miriele</h2>
-        <img src="./../../assets/user.png" alt="" />
+      <section class="container" id="userData" v-if="Object.keys(my_user).length">
+        <h1>{{ my_user.login }}</h1>
+        <h2>{{ my_user.url }}</h2>
+        <img :src="my_user.avatar_url" alt="" />
       </section>
+      <loader v-if="!Object.keys(my_user).length"></loader>
 
       <!--MyRepositories-->
       <div class="section-headers">
@@ -14,13 +15,12 @@
         <a href="#">Visualizar Todos</a>
       </div>
 
-      <section id="my-repositories">
-        <repository-card :cardType="1" :repository="{}"></repository-card>
-        <repository-card :cardType="1" :repository="{}"></repository-card>
-        <repository-card :cardType="1" :repository="{}"></repository-card>
-        <repository-card :cardType="1" :repository="{}"></repository-card>
-        <repository-card :cardType="1" :repository="{}"></repository-card>
+      <section id="my-repositories" v-if="my_repositorys.length">
+          <a target="_blank" :href="repo.url" v-for="repo in my_repositorys" :key="repo.name">
+              <repository-card :cardType="0" :repository=repo></repository-card>
+          </a>
       </section>
+      <loader v-if="!my_repositorys.length"></loader>
 
       <!-- DiscoverRepositories -->
       <div class="section-headers">
@@ -35,13 +35,12 @@
               <h2>Mais Favoritados</h2>
               <a href="#">Atualizar</a>
             </div>
-            <div class="grid-repository-line">
-              <repository-card :cardType="1" :repository="{}"></repository-card>
-              <repository-card :cardType="1" :repository="{}"></repository-card>
-              <repository-card :cardType="1" :repository="{}"></repository-card>
-              <repository-card :cardType="1" :repository="{}"></repository-card>
-              <repository-card :cardType="1" :repository="{}"></repository-card>
+            <div class="grid-repository-line" v-if="most_favorite_repositories.length">
+                <a target="_blank" :href="repo.url" v-for="repo in most_favorite_repositories" :key="repo.name">
+                    <repository-card :cardType="1" :repository=repo></repository-card>
+                </a>
             </div>
+            <loader v-if="!most_favorite_repositories.length"></loader>
           </div>
         </article>
 
@@ -51,12 +50,12 @@
               <h2>Parecidos com os seus</h2>
               <a href="#">Visualizar Todos</a>
             </div>
-            <div class="grid-repository">
-              <repository-card :cardType="1" :repository="{}"></repository-card>
-              <repository-card :cardType="1" :repository="{}"></repository-card>
-              <repository-card :cardType="1" :repository="{}"></repository-card>
-              <repository-card :cardType="1" :repository="{}"></repository-card>
+            <div class="grid-repository" v-if="repositories_similar_to_mine.length">
+                <a target="_blank" :href="repo.url" v-for="repo in repositories_similar_to_mine" :key="repo.name">
+                    <repository-card :cardType="1" :repository=repo></repository-card>
+                </a>
             </div>
+            <loader v-if="!repositories_similar_to_mine.length"></loader>
           </div>
           <div class="container">
             <div class="section-headers">
@@ -64,10 +63,7 @@
               <a href="#">Visualizar Todos</a>
             </div>
             <div class="grid-repository">
-              <repository-card :cardType="1" :repository="{}"></repository-card>
-              <repository-card :cardType="1" :repository="{}"></repository-card>
-              <repository-card :cardType="1" :repository="{}"></repository-card>
-              <repository-card :cardType="1" :repository="{}"></repository-card>
+             
             </div>
           </div>
         </article>
