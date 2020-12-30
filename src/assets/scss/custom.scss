@@ -3,6 +3,7 @@
     font-family: 'Nunito', sans-serif;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -38,6 +39,11 @@ h1 {
 p {
     font-size: 14px;
     color: #7389B7;
+}
+
+a {
+    text-decoration: none;
+    color: #3e9ce8;
 }
 
 .danger {

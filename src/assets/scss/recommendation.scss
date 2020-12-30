@@ -1,47 +1,144 @@
-.card {
-    background-color: #0f1d3a;
-    max-width: 330px;
-    padding: 1rem;
+h1,
+h2,
+h3,
+p {
+    color: white;
+}
+
+h1 {
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+}
+
+h2 {
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+}
+
+// Utils
+.container {
+    background-color: #22355b;
     border-radius: 20px;
 }
 
-.card-header {
+.section-headers {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    margin-bottom: 0.7rem;
-    .card-title {
-        color: #fff;
+    align-items: center;
+    text-align: center;
+}
+
+.grid-repository {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+}
+
+.grid-repository-line {
+    display: grid;
+    grid-template-columns: auto;
+    grid-gap: 20px;
+}
+
+// MainContent
+#main-content {
+    max-width: 90vw;
+    height: 100vh;
+    margin: 0 auto;
+    padding-top: 30px;
+}
+
+//UserData
+#userData {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    margin-bottom: 5rem;
+}
+
+#userData img {
+    position: absolute;
+    border-radius: 50%;
+    border: 8px solid #192744;
+    bottom: -60px;
+    width: 90px;
+}
+
+// MyRepositories
+#my-repositories {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 20px;
+    margin-bottom: 30px;
+}
+
+// Discover Repositories
+#discover-repositories {
+    display: flex;
+}
+
+#discover-repositories article>div {
+    padding: 1.7rem 1.5rem;
+    margin-bottom: 60px;
+}
+
+#discover-repositories article:first-child {
+    flex-basis: 25%;
+    margin-right: 30px;
+}
+
+#discover-repositories article:last-child {
+    flex-basis: 75%;
+    margin-left: 30px;
+}
+
+// Responsive Medias
+@media screen and (max-width: 1400px) {
+    #my-repositories {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .grid-repository {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
-.card-body {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    font-family: 'Nunito';
-    color: #546790;
-    font-size: 0.9rem;
-    margin-bottom: 0.9rem;
-    div {
-        margin-right: 25px;
-        i {
-            margin-right: 7px;
-        }
+@media screen and (max-width: 1100px) {
+    #my-repositories {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .grid-repository {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
-.card-footer {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    font-family: 'Nunito';
-    color: #546790;
-    font-size: 0.9rem;
-    div {
-        margin-right: 25px;
-        i {
-            margin-right: 7px;
-        }
+@media screen and (max-width: 900px) {
+    #my-repositories {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .grid-repository {
+        grid-template-columns: auto;
+    }
+    #discover-repositories article:first-child,
+    #discover-repositories article:last-child {
+        flex-basis: 50%;
+        margin-right: 30px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #my-repositories {
+        grid-template-columns: auto;
+    }
+    #discover-repositories {
+        flex-wrap: wrap;
+    }
+    #discover-repositories article:first-child,
+    #discover-repositories article:last-child {
+        flex-basis: 100%;
+        margin: 0;
     }
 }
