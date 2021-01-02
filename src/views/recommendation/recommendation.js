@@ -25,7 +25,7 @@ export default {
     methods: {
         set_myRepositories() {
             var vm = this;
-            this.get_user_repositories('mirielesilverio', 5).then(function (response) {
+            this.get_user_repositories('luis291099', 5).then(function (response) {
                 vm.get_repositories_with_language(response.data).then(function(r) {
                     vm.my_repositorys = r;
                 });
@@ -41,7 +41,7 @@ export default {
         },
         get_language_recommendation() {
             var vm = this;
-            this.get_user_repositories('mirielesilverio').then(function(response) {
+            this.get_user_repositories('luis291099').then(function(response) {
                 var repositories = [];
                 vm.get_repositories_with_language(response.data).then(function(r) {
                     repositories = r;
@@ -148,7 +148,7 @@ export default {
         },
         set_my_user () {
             var vm = this;
-            this.axios.get('https://api.github.com/users/mirielesilverio')
+            this.axios.get('https://api.github.com/users/luis291099')
             .then( function(response) {
                 vm.my_user = response.data;
             });
