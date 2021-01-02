@@ -2,6 +2,11 @@
     background-color: #0f1d3a;
     padding: 1rem;
     border-radius: 20px;
+    transition: 0.5s;
+}
+
+.card:hover {
+    opacity: 0.9;
 }
 
 .card-header {
@@ -12,6 +17,7 @@
     .card-title {
         color: #fff;
         font-size: 1rem;
+        font-weight: 600;
     }
 }
 

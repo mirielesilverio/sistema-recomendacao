@@ -71,7 +71,7 @@ h2 {
 // MyRepositories
 #my-repositories {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-gap: 20px;
     margin-bottom: 30px;
 }
@@ -122,10 +122,15 @@ h2 {
     .grid-repository {
         grid-template-columns: auto;
     }
-    #discover-repositories article:first-child,
+    #discover-repositories article:first-child {
+        flex-basis: 50%;
+        padding-right: 10px;
+        margin: 0;
+    }
     #discover-repositories article:last-child {
         flex-basis: 50%;
-        margin-right: 30px;
+        padding-left: 10px;
+        margin: 0;
     }
 }
 
@@ -140,5 +145,6 @@ h2 {
     #discover-repositories article:last-child {
         flex-basis: 100%;
         margin: 0;
+        padding: 0;
     }
 }

@@ -7,7 +7,11 @@ export default {
         'loader': Loader,
     },
     name: 'Recommendation',
-    props: {},
+    props: {
+        username: {
+            require: true
+        }
+    },
     created() {
         this.set_myRepositories();
         this.set_my_user();
@@ -25,7 +29,7 @@ export default {
     methods: {
         set_myRepositories() {
             var vm = this;
-            this.get_user_repositories('luis291099', 5).then(function (response) {
+            this.get_user_repositories(vm.username, 4).then(function(response) {
                 vm.get_repositories_with_language(response.data).then(function(r) {
                     vm.my_repositorys = r;
                 });
@@ -41,7 +45,7 @@ export default {
         },
         get_language_recommendation() {
             var vm = this;
-            this.get_user_repositories('luis291099').then(function(response) {
+            this.get_user_repositories(vm.username).then(function(response) {
                 var repositories = [];
                 vm.get_repositories_with_language(response.data).then(function(r) {
                     repositories = r;
@@ -64,10 +68,10 @@ export default {
                         return b[1] - a[1];
                     });
                     var most_used_languages = [];
-                    for(var i = 0; i < 5 && i < languages_list.length ; i ++) {
+                    for (var i = 0; i < 5 && i < languages_list.length; i++) {
                         most_used_languages.push(languages_list[i][0]);
                     }
-                    vm.get_repositories_by_languages_list(most_used_languages).then( function (r) {
+                    vm.get_repositories_by_languages_list(most_used_languages).then(function(r) {
                         vm.repositories_similar_to_mine = r;
                     });
                 });
@@ -76,9 +80,9 @@ export default {
         get_repositories_by_languages_list(languages_list) {
             var vm = this;
             return new Promise((resolve, reject) => {
-               var repositories = [];
-               languages_list.forEach(function(language) {
-                    vm.get_repositories(1, 1, 'language:'+language).then(function(response) {
+                var repositories = [];
+                languages_list.forEach(function(language) {
+                    vm.get_repositories(1, 1, 'language:' + language).then(function(response) {
                         repositories.push(response.data.items[0]);
                         if (languages_list.length == repositories.length) {
                             vm.get_repositories_with_language(repositories).then(function(r) {
@@ -86,15 +90,15 @@ export default {
                             });
                         }
                     });
-               });
+                });
             });
         },
         get_repositories_with_language(repositories) {
             var vm = this;
             return new Promise((resolve, reject) => {
-               var i = 1;
-               var new_repositories = [];
-               repositories.forEach(function(repo) {
+                var i = 1;
+                var new_repositories = [];
+                repositories.forEach(function(repo) {
                     vm.get_languages_of_repository(repo).then(function(res) {
                         repo = vm.clean_repository_object(repo);
                         repo.languages = Object.keys(res.data);
@@ -122,10 +126,10 @@ export default {
                 }
             });
         },
-        get_user_repositories (username, page_size) {
+        get_user_repositories(username, page_size) {
             if (!page_size)
                 page_size = 100
-            return this.axios.get('https://api.github.com/users/'+ username +'/repos', {
+            return this.axios.get('https://api.github.com/users/' + username + '/repos', {
                 params: {
                     type: 'owner',
                     sort: 'updated',
@@ -133,9 +137,9 @@ export default {
                 }
             });
         },
-        get_languages_of_repository (repository) {
+        get_languages_of_repository(repository) {
             repository = this.clean_repository_object(repository);
-            return this.axios.get('https://api.github.com/repos/' + repository.owner.login +'/'+ repository.name +'/languages');
+            return this.axios.get('https://api.github.com/repos/' + repository.owner.login + '/' + repository.name + '/languages');
         },
         clean_repository_object(repository) {
             return {
@@ -146,12 +150,13 @@ export default {
                 url: repository.svn_url
             };
         },
-        set_my_user () {
+        set_my_user() {
             var vm = this;
-            this.axios.get('https://api.github.com/users/luis291099')
-            .then( function(response) {
-                vm.my_user = response.data;
-            });
+            this.axios.get(`https://api.github.com/users/${vm.username}`)
+                .then(function(response) {
+                    vm.my_user = response.data;
+                    console.log(vm.my_user);
+                });
         }
     }
 }
