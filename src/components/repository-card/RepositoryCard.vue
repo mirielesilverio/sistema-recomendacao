@@ -5,7 +5,7 @@
       <p v-if="cardType == 1">{{ repository.owner.name}}</p>
     </div>
     <div class="card-body">
-      <div v-for="language in repository.languages.slice(0, 4)" :key="language" >
+      <div v-for="language in repository.languages.slice(0, 3)" :key="language" >
         <i class="fas fa-circle fa-sm" :class='"color-"+language.toLowerCase()'></i>{{ language }}
       </div>
     </div>

@@ -28,6 +28,15 @@ h2 {
     text-align: center;
 }
 
+.change-user {
+    text-align: center;
+    margin-bottom: 64px;
+    .btn {
+        border-radius: 30px;
+        padding: 8px 16px;
+    }
+}
+
 .grid-repository {
     margin-top: 20px;
     display: grid;

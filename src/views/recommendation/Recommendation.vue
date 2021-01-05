@@ -7,6 +7,9 @@
         <h2>{{ my_user.url }}</h2>
         <img :src="my_user.avatar_url" :alt="my_user.login" />
       </section>
+      <div class="change-user">
+        <a class="btn" @click="$router.push({name: 'discover'})">Trocar Usuário <i class="fas fa-exchange-alt"></i></a>
+      </div>
       <loader v-if="!Object.keys(my_user).length"></loader>
 
       <!--MyRepositories-->
@@ -63,8 +66,11 @@
               <a href="#">Visualizar Todos</a>
             </div>
             <div class="grid-repository">
-             
+              <a target="_blank" :href="repo.url" v-for="repo in user_repositories_similar_to_mine" :key="repo.name">
+                <repository-card :cardType="1" :repository=repo></repository-card>
+              </a>
             </div>
+            <loader v-if="!user_repositories_similar_to_mine.length"></loader>
           </div>
         </article>
 
