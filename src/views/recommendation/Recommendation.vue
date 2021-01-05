@@ -70,7 +70,11 @@
                 <repository-card :cardType="1" :repository=repo></repository-card>
               </a>
             </div>
-            <loader v-if="!user_repositories_similar_to_mine.length"></loader>
+            <div v-if="user_repositories_similar_loaded && user_repositories_similar_to_mine.length === 0" class="empty-state">
+              <h3>Nenhum repositório encontrado</h3>
+              <p>É possível que você ainda não siga usuários no Github!</p>
+            </div>
+            <loader v-if="!user_repositories_similar_loaded"></loader>
           </div>
         </article>
 

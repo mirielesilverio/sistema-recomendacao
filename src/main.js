@@ -22,7 +22,7 @@ const router = new VueRouter({
 
 Vue.axios.interceptors.request.use(
     (config) => {
-        let token = 'token 691c6bdd74bdf0a81b1a2677352ae035b5fa93da ';
+        let token = 'token 77b8d65362c9caf24dcd309b31c01506fc30a7a4';
         config.headers['Authorization'] = token;
         return config;
     },

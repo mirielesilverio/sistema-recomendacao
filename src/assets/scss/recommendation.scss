@@ -50,6 +50,19 @@ h2 {
     grid-gap: 20px;
 }
 
+.empty-state {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    padding: 1rem 2rem;
+    h3 {
+        font-size: 1rem;
+        padding-bottom: 15px;
+    }
+}
+
 // MainContent
 #main-content {
     max-width: 90vw;
